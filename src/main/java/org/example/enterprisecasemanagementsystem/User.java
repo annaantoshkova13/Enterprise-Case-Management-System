@@ -1,7 +1,6 @@
 package org.example.enterprisecasemanagementsystem;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Role;
 
 import java.time.LocalDateTime;
 
