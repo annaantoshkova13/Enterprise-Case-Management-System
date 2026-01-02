@@ -1,9 +1,9 @@
-package org.example;
+package org.example.enterprisecasemanagementsystem;
 
 import jakarta.persistence.*;
 
 @Entity
-public class StudentPtofile {
+public class TeacherProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -12,20 +12,20 @@ public class StudentPtofile {
 
     private String lastName;
 
-    private String group;
+    private String department;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name="user_id")
     private User user;
 
-    public StudentPtofile() {
+    public TeacherProfile() {
     }
 
-    public StudentPtofile(Long id, String firstName, String lastName, String group, User user) {
+    public TeacherProfile(Long id, String firstName, String lastName, String department, User user) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.group = group;
+        this.department = department;
         this.user = user;
     }
 
@@ -53,12 +53,12 @@ public class StudentPtofile {
         this.lastName = lastName;
     }
 
-    public String getGroup() {
-        return group;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public User getUser() {

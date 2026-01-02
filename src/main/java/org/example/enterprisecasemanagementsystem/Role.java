@@ -1,6 +1,4 @@
-package org.example;
-
-import jakarta.persistence.Entity;
+package org.example.enterprisecasemanagementsystem;
 
 public enum Role {
     ADMIN,
