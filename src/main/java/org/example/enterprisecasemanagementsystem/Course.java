@@ -18,12 +18,12 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    private TeacherProfile teacherProfile;
+    private Teacher teacherProfile;
 
     public Course() {
     }
 
-    public Course(Long id, String title, String description, LocalDateTime createdDate, TeacherProfile teacherProfile) {
+    public Course(Long id, String title, String description, LocalDateTime createdDate, Teacher teacherProfile) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -63,11 +63,11 @@ public class Course {
         this.createdDate = createdDate;
     }
 
-    public TeacherProfile getTeacherProfile() {
+    public Teacher getTeacherProfile() {
         return teacherProfile;
     }
 
-    public void setTeacherProfile(TeacherProfile teacherProfile) {
+    public void setTeacherProfile(Teacher teacherProfile) {
         this.teacherProfile = teacherProfile;
     }
 }

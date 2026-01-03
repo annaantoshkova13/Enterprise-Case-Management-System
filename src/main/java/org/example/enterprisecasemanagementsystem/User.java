@@ -23,11 +23,11 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private StudentPtofile studentPtofile;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private TeacherProfile teacherProfile;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private StudentPtofile studentPtofile;
+//
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private TeacherProfile teacherProfile;
 
     public User(Long id, String email, String passwordHash, Role role, LocalDateTime createdAt) {
         this.id = id;

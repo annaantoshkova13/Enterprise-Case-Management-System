@@ -3,30 +3,24 @@ package org.example.enterprisecasemanagementsystem;
 import jakarta.persistence.*;
 
 @Entity
-public class StudentPtofile {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String firstName;
 
+    @Column(nullable = false)
     private String lastName;
 
-    private String group;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public StudentPtofile() {
+    public Profile() {
     }
 
-    public StudentPtofile(Long id, String firstName, String lastName, String group, User user) {
+    public Profile(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.group = group;
-        this.user = user;
     }
 
     public Long getId() {
@@ -51,21 +45,5 @@ public class StudentPtofile {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
