@@ -1,8 +1,6 @@
 package org.example.enterprisecasemanagementsystem;
 
 import jakarta.persistence.*;
-import org.example.Student;
-import org.example.Teacher;
 
 import java.time.LocalDateTime;
 
