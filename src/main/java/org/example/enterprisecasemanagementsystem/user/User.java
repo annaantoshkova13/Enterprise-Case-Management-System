@@ -1,6 +1,9 @@
-package org.example.enterprisecasemanagementsystem;
+package org.example.enterprisecasemanagementsystem.user;
 
 import jakarta.persistence.*;
+import org.example.enterprisecasemanagementsystem.Role;
+import org.example.enterprisecasemanagementsystem.student.Student;
+import org.example.enterprisecasemanagementsystem.teacher.Teacher;
 
 import java.time.LocalDateTime;
 

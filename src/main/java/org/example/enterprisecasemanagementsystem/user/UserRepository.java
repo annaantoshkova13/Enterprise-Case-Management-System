@@ -1,4 +1,4 @@
-package org.example.enterprisecasemanagementsystem;
+package org.example.enterprisecasemanagementsystem.user;
 
 import java.util.List;
 import java.util.Optional;

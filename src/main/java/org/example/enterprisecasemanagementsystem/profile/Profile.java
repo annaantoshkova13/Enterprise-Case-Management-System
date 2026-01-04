@@ -1,4 +1,4 @@
-package org.example.enterprisecasemanagementsystem;
+package org.example.enterprisecasemanagementsystem.profile;
 
 import jakarta.persistence.*;
 

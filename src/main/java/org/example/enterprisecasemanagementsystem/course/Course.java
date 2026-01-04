@@ -1,6 +1,7 @@
-package org.example.enterprisecasemanagementsystem;
+package org.example.enterprisecasemanagementsystem.course;
 
 import jakarta.persistence.*;
+import org.example.enterprisecasemanagementsystem.teacher.Teacher;
 
 import java.time.LocalDateTime;
 
@@ -14,21 +15,24 @@ public class Course {
 
     private String description;
 
-    private LocalDateTime createdDate;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    private Teacher teacherProfile;
+    private Teacher teacher;
 
     public Course() {
     }
 
-    public Course(Long id, String title, String description, LocalDateTime createdDate, Teacher teacherProfile) {
-        this.id = id;
+    public Course(String name, String description) {
+    }
+
+    public Course(String title, String description, LocalDateTime createdAt, Teacher teacher) {
         this.title = title;
         this.description = description;
-        this.createdDate = createdDate;
-        this.teacherProfile = teacherProfile;
+        this.createdAt = createdAt;
+        this.teacher = teacher;
     }
 
     public Long getId() {
@@ -55,19 +59,22 @@ public class Course {
         this.description = description;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedDate(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Teacher getTeacherProfile() {
-        return teacherProfile;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherProfile(Teacher teacherProfile) {
-        this.teacherProfile = teacherProfile;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public void update(String name, String description) {
     }
 }

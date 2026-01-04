@@ -1,6 +1,8 @@
-package org.example.enterprisecasemanagementsystem;
+package org.example.enterprisecasemanagementsystem.teacher;
 
 import jakarta.persistence.*;
+import org.example.enterprisecasemanagementsystem.profile.Profile;
+import org.example.enterprisecasemanagementsystem.user.User;
 
 @Entity
 public class Teacher extends Profile {
@@ -12,6 +14,9 @@ public class Teacher extends Profile {
     private User user;
 
     public Teacher() {
+    }
+
+    public Teacher(User user, String department) {
     }
 
     public Teacher(Long id, User user) {
@@ -33,5 +38,12 @@ public class Teacher extends Profile {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void changeDepartment(String newDepartment) {
+        if (newDepartment == null || newDepartment.isBlank()) {
+            throw new IllegalArgumentException("Department cannot be empty");
+        }
+        this.department = newDepartment;
     }
 }

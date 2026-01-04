@@ -1,4 +1,6 @@
-package org.example.enterprisecasemanagementsystem;
+package org.example.enterprisecasemanagementsystem.user;
+
+import org.example.enterprisecasemanagementsystem.Role;
 
 public class ChangeUserRoleUseCase {
 
