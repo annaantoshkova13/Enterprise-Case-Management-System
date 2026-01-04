@@ -1,6 +1,8 @@
 package org.example.enterprisecasemanagementsystem;
 
 import jakarta.persistence.*;
+import org.example.Student;
+import org.example.Teacher;
 
 import java.time.LocalDateTime;
 
@@ -23,21 +25,23 @@ public class User {
 
     private LocalDateTime createdAt;
 
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//    private StudentPtofile studentPtofile;
-//
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//    private TeacherProfile teacherProfile;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Student student;
 
-    public User(Long id, String email, String passwordHash, Role role, LocalDateTime createdAt) {
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Teacher teacher;
+
+    public User(Long id, String email, String passwordHash, Role role, LocalDateTime createdAt, Student student, Teacher teacher) {
         this.id = id;
         this.email = email;
         this.passwordHash = passwordHash;
         this.role = role;
         this.createdAt = createdAt;
+        this.student = student;
+        this.teacher = teacher;
     }
 
-    public User() {
+    public User(Object o, String email, String passwordHash, Role role, Object object) {
     }
 
     public String getEmail() {
