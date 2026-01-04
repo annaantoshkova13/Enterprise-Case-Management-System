@@ -1,10 +1,10 @@
 package org.example.enterprisecasemanagementsystem;
 
-public class CreateEserUseCase {
+public class CreateUserUseCase {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public CreateEserUseCase(UserRepository userRepository) {
+    public CreateUserUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

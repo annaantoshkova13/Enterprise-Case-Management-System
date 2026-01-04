@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class GetUserByIdUseCase {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public GetUserByIdUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
