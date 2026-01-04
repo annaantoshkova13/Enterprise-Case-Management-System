@@ -39,6 +39,9 @@ public class User {
         this.teacher = teacher;
     }
 
+    public User() {
+    }
+
     public User(Object o, String email, String passwordHash, Role role, Object object) {
     }
 
