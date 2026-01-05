@@ -13,8 +13,8 @@ public class UserUseCaseConfig {
     }
 
     @Bean
-    public UpdateCourseUseCase updateUserUseCase(CourseRepository repository){
-        return new UpdateCourseUseCase(repository);
+    public UpdateUserProfileUseCase updateUserUseCase(CourseRepository repository){
+        return new UpdateUserProfileUseCase((UserRepository) repository);
     }
 
     @Bean
@@ -23,12 +23,12 @@ public class UserUseCaseConfig {
     }
 
     @Bean
-    public ListCourseUseCase listUserUseCase(CourseRepository repository){
-        return new ListCourseUseCase(repository);
+    public ListUsersUseCase listUserUseCase(CourseRepository repository){
+        return new ListUsersUseCase((UserRepository) repository);
     }
 
     @Bean
-    public GetCourseUseCase getUserUseCase(CourseRepository repository){
-        return new GetCourseUseCase(repository);
+    public GetUserByIdUseCase getUserUseCase(CourseRepository repository){
+        return new GetUserByIdUseCase((UserRepository) repository);
     }
 }
