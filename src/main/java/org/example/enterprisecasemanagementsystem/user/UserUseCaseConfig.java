@@ -1,9 +1,6 @@
 package org.example.enterprisecasemanagementsystem.user;
 
-import org.example.enterprisecasemanagementsystem.course.CourseRepository;
-import org.example.enterprisecasemanagementsystem.course.GetCourseUseCase;
-import org.example.enterprisecasemanagementsystem.course.ListCourseUseCase;
-import org.example.enterprisecasemanagementsystem.course.UpdateCourseUseCase;
+import org.example.enterprisecasemanagementsystem.course.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

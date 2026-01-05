@@ -1,8 +1,10 @@
 package org.example.enterprisecasemanagementsystem.course;
 
-import org.example.enterprisecasemanagementsystem.user.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface JpaCourseRepository extends JpaRepository<User, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface JpaCourseRepository extends CourseRepository, JpaRepository<Course, Long> {
 
 }

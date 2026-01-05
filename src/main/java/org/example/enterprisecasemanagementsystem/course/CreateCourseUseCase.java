@@ -1,7 +1,6 @@
 package org.example.enterprisecasemanagementsystem.course;
 
 import jakarta.transaction.Transactional;
-import org.example.enterprisecasemanagementsystem.user.UserRepository;
 
 public class CreateCourseUseCase {
 
