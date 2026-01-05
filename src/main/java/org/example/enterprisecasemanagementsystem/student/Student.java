@@ -8,7 +8,7 @@ import org.example.enterprisecasemanagementsystem.user.User;
 @Entity
 public class Student extends Profile {
 
-    private String group;
+    private String groupName;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -17,19 +17,19 @@ public class Student extends Profile {
     public Student() {
     }
 
-    public Student(User user, Group group) {
+    public Student(User user, Group groupName) {
     }
 
     public Student(User user) {
         this.user = user;
     }
 
-    public String getGroup() {
-        return group;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public User getUser() {
@@ -44,6 +44,6 @@ public class Student extends Profile {
         if (newGroup == null || newGroup.isBlank()) {
             throw new IllegalArgumentException("Group cannot be empty");
         }
-        this.group = newGroup;
+        this.groupName = newGroup;
     }
 }

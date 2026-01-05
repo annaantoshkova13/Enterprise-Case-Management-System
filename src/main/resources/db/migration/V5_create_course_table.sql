@@ -6,6 +6,6 @@ create table course(
     teacher_id BIGINT NOT NULL,
     CONSTRAINT fk_teacher
         FOREIGN KEY(teacher_id)
-        REFERENCES teachers(id)
+        REFERENCES users(id)
         ON DELETE CASCADE
 );
