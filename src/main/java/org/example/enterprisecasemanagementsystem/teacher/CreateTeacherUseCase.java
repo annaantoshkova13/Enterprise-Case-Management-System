@@ -11,7 +11,7 @@ public class CreateTeacherUseCase {
     }
 
     public Teacher execute(User user, String department) {
-        Teacher teacher = new Teacher(user, department);
+        Teacher teacher = new Teacher();
         return teacherRepository.save(teacher);
     }
 }

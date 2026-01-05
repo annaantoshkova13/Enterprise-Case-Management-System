@@ -24,7 +24,7 @@ public abstract class Profile {
         this.lastName = lastName;
     }
 
-    public User getId() {
+    public Long getId() {
         return id;
     }
 

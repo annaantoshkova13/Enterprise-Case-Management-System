@@ -12,6 +12,6 @@ public class CreateCourseUseCase {
 
     @Transactional
     public Course execute(String name, String description) {
-        return courseRepository.save(new Course(name, description));
+        return courseRepository.save(new Course());
     }
 }

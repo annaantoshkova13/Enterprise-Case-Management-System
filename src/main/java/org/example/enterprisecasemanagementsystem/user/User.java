@@ -26,26 +26,17 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Student student;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Teacher teacher;
 
-    public User(Long id, String email, String passwordHash, Role role, LocalDateTime createdAt, Student student, Teacher teacher) {
+    public User(Long id, String email, String passwordHash, Role role, LocalDateTime createdAt) {
         this.id = id;
         this.email = email;
         this.passwordHash = passwordHash;
         this.role = role;
         this.createdAt = createdAt;
-        this.student = student;
-        this.teacher = teacher;
     }
 
     public User() {
-    }
-
-    public User(Object o, String email, String passwordHash, Role role, Object object) {
     }
 
     public String getEmail() {

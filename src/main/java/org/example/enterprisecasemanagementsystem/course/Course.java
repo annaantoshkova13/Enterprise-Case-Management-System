@@ -11,70 +11,57 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false, length = 1000)
     private String description;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     public Course() {
     }
 
-    public Course(String name, String description) {
-    }
-
-    public Course(String title, String description, LocalDateTime createdAt, Teacher teacher) {
+    public Course(String title, String description, Teacher teacher) {
         this.title = title;
         this.description = description;
-        this.createdAt = createdAt;
         this.teacher = teacher;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public void update(String title, String description) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Title cannot be empty");
+        }
+        if (description == null || description.isBlank()) {
+            throw new IllegalArgumentException("Description cannot be empty");
+        }
+        this.title = title;
+        this.description = description;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedDate(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public Teacher getTeacher() {
         return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
-    public void update(String name, String description) {
     }
 }

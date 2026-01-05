@@ -9,6 +9,14 @@ public class Teacher extends Profile {
 
     private String department;
 
+    public Teacher() {
+    }
+
+    public Teacher(Long id, String firstName, String lastName, String department) {
+        super(id, firstName, lastName);
+        this.department = department;
+    }
+
     public String getDepartment() {
         return department;
     }
