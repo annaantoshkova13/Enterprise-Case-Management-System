@@ -1,9 +1,10 @@
 package org.example.enterprisecasemanagementsystem.profile;
 
 import jakarta.persistence.*;
+import org.example.enterprisecasemanagementsystem.user.User;
 
-@Entity
-public class Profile {
+@MappedSuperclass
+public abstract class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
