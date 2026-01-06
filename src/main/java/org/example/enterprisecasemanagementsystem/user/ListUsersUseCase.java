@@ -1,7 +1,9 @@
 package org.example.enterprisecasemanagementsystem.user;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+@Service
 public class ListUsersUseCase {
 
     private final UserRepository userRepository;

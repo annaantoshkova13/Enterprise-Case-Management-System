@@ -1,5 +1,7 @@
 package org.example.enterprisecasemanagementsystem.user;
 
+import org.example.enterprisecasemanagementsystem.exception.ResourceNotFoundException;
+
 import java.util.Optional;
 
 public class GetUserByIdUseCase {
@@ -9,7 +11,9 @@ public class GetUserByIdUseCase {
     public GetUserByIdUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public Optional<User> execute(Long id) {
-        return userRepository.findById(id);
+
+    public User execute(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
     }
 }

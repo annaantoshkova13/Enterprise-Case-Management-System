@@ -1,5 +1,9 @@
 package org.example.enterprisecasemanagementsystem.user;
 
+import org.example.enterprisecasemanagementsystem.exception.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
 public class DeleteUserUseCase {
 
     private final UserRepository userRepository;
@@ -7,8 +11,11 @@ public class DeleteUserUseCase {
     public DeleteUserUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     public void execute(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        userRepository.delete(user);
+        if (!userRepository.existsById(userId)) {
+            throw new ResourceNotFoundException("User", "id", userId);
+        }
+        userRepository.deleteById(userId);
     }
 }

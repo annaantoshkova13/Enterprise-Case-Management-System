@@ -1,6 +1,9 @@
 package org.example.enterprisecasemanagementsystem.user;
 
+import jakarta.validation.Valid;
 import org.example.enterprisecasemanagementsystem.Role;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -30,66 +33,70 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody CreateUserRequest request) {
-        return createUserUseCase.execute(
+    public ResponseEntity<User> createUser(@Valid @RequestBody CreateUserRequest request) {
+        User user = createUserUseCase.execute(
                 request.getEmail(),
-                request.getPasswordHash(),
+                request.getPassword(),
                 request.getRole()
         );
-    }
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest request) {
-        // Используйте только email, так как passwordHash нельзя так просто обновлять
-        return updateUserUseCase.execute(id, request.getEmail(), request.getEmail(), request.getRole());
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
-    @PutMapping("/{id}/role")
-    public User changeRole(@PathVariable Long id, @RequestBody ChangeRoleRequest request) {
-        return changeUserRoleUseCase.execute(id, request.getRole());
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id,
+                                           @Valid @RequestBody UpdateUserRequest request) {
+        User user = updateUserUseCase.execute(id, request.getEmail());
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/{id}")
-    public Optional<User> getUser(@PathVariable Long id) {
-        return getUserByIdUseCase.execute(id);
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        User user = getUserByIdUseCase.execute(id);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping
-    public List<User> listUsers() {
-        return listUsersUseCase.execute();
+    public ResponseEntity<List<User>> listUsers() {
+        List<User> users = listUsersUseCase.execute();
+        return ResponseEntity.ok(users);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         deleteUserUseCase.execute(id);
+        return ResponseEntity.noContent().build();
     }
 
-    static class CreateUserRequest {
+    @PutMapping("/{id}/role")
+    public ResponseEntity<User> changeRole(@PathVariable Long id,
+                                           @Valid @RequestBody ChangeRoleRequest request) {
+        User user = changeUserRoleUseCase.execute(id, request.getRole());
+        return ResponseEntity.ok(user);
+    }
+
+    public static class CreateUserRequest {
         private String email;
-        private String passwordHash;
+        private String password;
         private Role role;
 
         public String getEmail() { return email; }
         public void setEmail(String email) { this.email = email; }
 
-        public String getPasswordHash() { return passwordHash; }
-        public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+        public String getPassword() { return password; }
+        public void setPassword(String password) { this.password = password; }
 
         public Role getRole() { return role; }
         public void setRole(Role role) { this.role = role; }
     }
 
-    static class UpdateUserRequest {
+    public static class UpdateUserRequest {
         private String email;
-        private Role role;
 
         public String getEmail() { return email; }
         public void setEmail(String email) { this.email = email; }
-
-        public Role getRole() { return role; }
-        public void setRole(Role role) { this.role = role; }
     }
 
-    static class ChangeRoleRequest {
+    public static class ChangeRoleRequest {
         private Role role;
 
         public Role getRole() { return role; }
