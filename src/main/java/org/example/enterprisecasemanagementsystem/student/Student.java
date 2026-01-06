@@ -6,18 +6,28 @@ import org.example.enterprisecasemanagementsystem.profile.Profile;
 import org.example.enterprisecasemanagementsystem.user.User;
 
 @Entity
+@Table(name = "students")
 public class Student extends Profile {
-
+    @Column(name = "group_name")
     private String groupName;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     public Student() {
     }
 
-    public Student(User user, Group groupName) {
+    public Student(String firstName, String lastName, String groupName, User user) {
+        super(firstName, lastName);
+        this.groupName = groupName;
+        this.user = user;
+    }
+
+    // Добавьте конструктор с User и String (для группы)
+    public Student(User user, String groupName) {
+        this.user = user;
+        this.groupName = groupName;
     }
 
     public Student(User user) {

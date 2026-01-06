@@ -11,7 +11,12 @@ public class CreateUserUseCase {
     }
 
     public User execute(String email, String passwordHash, Role role) {
-        User user = new User(null, email, passwordHash, role, null);
+        // Проверка на существующий email
+        if (userRepository.findByEmail(email).isPresent()) {
+            throw new IllegalArgumentException("User with email " + email + " already exists");
+        }
+
+        User user = new User(email, passwordHash, role);
         return userRepository.save(user);
     }
 }

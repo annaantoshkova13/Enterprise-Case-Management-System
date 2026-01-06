@@ -11,7 +11,12 @@ public class CreateTeacherUseCase {
     }
 
     public Teacher execute(User user, String department) {
-        Teacher teacher = new Teacher();
+        Teacher teacher = new Teacher("", "", department, user); // Укажите firstName и lastName
+        return teacherRepository.save(teacher);
+    }
+
+    public Teacher execute(String firstName, String lastName, String department, User user) {
+        Teacher teacher = new Teacher(firstName, lastName, department, user);
         return teacherRepository.save(teacher);
     }
 }

@@ -1,7 +1,6 @@
 package org.example.enterprisecasemanagementsystem.profile;
 
 import jakarta.persistence.*;
-import org.example.enterprisecasemanagementsystem.user.User;
 
 @MappedSuperclass
 public abstract class Profile {
@@ -18,8 +17,7 @@ public abstract class Profile {
     public Profile() {
     }
 
-    public Profile(Long id, String firstName, String lastName) {
-        this.id = id;
+    public Profile(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

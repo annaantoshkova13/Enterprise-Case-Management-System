@@ -1,5 +1,6 @@
 package org.example.enterprisecasemanagementsystem.course;
 
+import org.example.enterprisecasemanagementsystem.teacher.TeacherRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -7,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 public class CourseUseCaseConfig {
 
     @Bean
-    public CreateCourseUseCase createCourseUseCase(CourseRepository repository){
-        return new CreateCourseUseCase(repository);
+    public CreateCourseUseCase createCourseUseCase(CourseRepository repository, TeacherRepository teacherRepository){
+        return new CreateCourseUseCase(repository, teacherRepository);
     }
 
     @Bean

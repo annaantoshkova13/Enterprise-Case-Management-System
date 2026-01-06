@@ -11,29 +11,30 @@ import java.time.LocalDateTime;
 @Table (name = "users")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
-    @Column (nullable = false)
+    @Column(nullable = false)
     private Role role;
 
     private LocalDateTime createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
-
-    public User(Long id, String email, String passwordHash, Role role, LocalDateTime createdAt) {
-        this.id = id;
-        this.email = email;
-        this.passwordHash = passwordHash;
-        this.role = role;
-        this.createdAt = createdAt;
+    public User(String email, String passwordHash, Role role) {
+        setEmail(email);
+        setPasswordHash(passwordHash);
+        setRole(role);
     }
 
     public User() {
@@ -44,6 +45,12 @@ public class User {
     }
 
     public void setEmail(String email) {
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email cannot be empty");
+        }
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
         this.email = email;
     }
 
@@ -52,6 +59,9 @@ public class User {
     }
 
     public void setPasswordHash(String passwordHash) {
+        if (passwordHash == null || passwordHash.isBlank()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
         this.passwordHash = passwordHash;
     }
 
@@ -60,6 +70,9 @@ public class User {
     }
 
     public void setRole(Role role) {
+        if (role == null) {
+            throw new IllegalArgumentException("Role cannot be null");
+        }
         this.role = role;
     }
 
@@ -78,5 +91,4 @@ public class User {
     public Long getId() {
         return id;
     }
-
 }

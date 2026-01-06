@@ -1,6 +1,5 @@
 package org.example.enterprisecasemanagementsystem.user;
 
-import org.example.enterprisecasemanagementsystem.course.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +13,7 @@ public class UserUseCaseConfig {
 
     @Bean
     public UpdateUserProfileUseCase updateUserUseCase(UserRepository repository){
-        return new UpdateUserProfileUseCase((UserRepository) repository);
+        return new UpdateUserProfileUseCase(repository); // УБРАТЬ каст (UserRepository)
     }
 
     @Bean
@@ -24,11 +23,16 @@ public class UserUseCaseConfig {
 
     @Bean
     public ListUsersUseCase listUserUseCase(UserRepository repository){
-        return new ListUsersUseCase((UserRepository) repository);
+        return new ListUsersUseCase(repository); // УБРАТЬ каст (UserRepository)
     }
 
     @Bean
     public GetUserByIdUseCase getUserUseCase(UserRepository repository){
-        return new GetUserByIdUseCase((UserRepository) repository);
+        return new GetUserByIdUseCase(repository); // УБРАТЬ каст (UserRepository)
+    }
+
+    @Bean
+    public ChangeUserRoleUseCase changeUserRoleUseCase(UserRepository repository){
+        return new ChangeUserRoleUseCase(repository);
     }
 }

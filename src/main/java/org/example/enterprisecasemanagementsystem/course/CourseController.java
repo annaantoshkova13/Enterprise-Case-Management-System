@@ -27,13 +27,17 @@ public class CourseController {
     }
 
     @PostMapping
-    public Course create(@RequestBody Course course) {
-        return createCourseUseCase.execute(course.getTitle(), course.getDescription());
+    public Course create(@RequestBody CreateCourseRequest request) {
+        return createCourseUseCase.execute(
+                request.getTitle(),
+                request.getDescription(),
+                request.getTeacherId()
+        );
     }
 
     @PutMapping("/{id}")
-    public Course update(@PathVariable Long id, @RequestBody Course course) {
-        return updateCourseUseCase.execute(id, course.getTitle(), course.getDescription());
+    public Course update(@PathVariable Long id, @RequestBody UpdateCourseRequest request) {
+        return updateCourseUseCase.execute(id, request.getTitle(), request.getDescription());
     }
 
     @GetMapping("/{id}")
@@ -49,5 +53,31 @@ public class CourseController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         deleteCourseUseCase.execute(id);
+    }
+
+    static class CreateCourseRequest {
+        private String title;
+        private String description;
+        private Long teacherId;
+
+        public String getTitle() { return title; }
+        public void setTitle(String title) { this.title = title; }
+
+        public String getDescription() { return description; }
+        public void setDescription(String description) { this.description = description; }
+
+        public Long getTeacherId() { return teacherId; }
+        public void setTeacherId(Long teacherId) { this.teacherId = teacherId; }
+    }
+
+    static class UpdateCourseRequest {
+        private String title;
+        private String description;
+
+        public String getTitle() { return title; }
+        public void setTitle(String title) { this.title = title; }
+
+        public String getDescription() { return description; }
+        public void setDescription(String description) { this.description = description; }
     }
 }

@@ -5,16 +5,30 @@ import org.example.enterprisecasemanagementsystem.profile.Profile;
 import org.example.enterprisecasemanagementsystem.user.User;
 
 @Entity
+@Table(name = "teachers")
 public class Teacher extends Profile {
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
 
     private String department;
 
     public Teacher() {
     }
 
-    public Teacher(Long id, String firstName, String lastName, String department) {
-        super(id, firstName, lastName);
+    public Teacher(String firstName, String lastName, String department, User user) {
+        super(firstName, lastName);
         this.department = department;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getDepartment() {
